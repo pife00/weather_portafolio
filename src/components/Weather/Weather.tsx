@@ -5,6 +5,8 @@ type Props = {
 }
 
 export const Weather:React.FC<Props> = (props:Props) =>{
+  let name = props.name != undefined ? props.name:''
+  let state = props.state != undefined ? props.state:''
     return(
         <div className="flex">
           <h1 className="text-9xl font-semibold text-white">
@@ -16,7 +18,7 @@ export const Weather:React.FC<Props> = (props:Props) =>{
 
           <div className="sm:mt-14">
             <div className=" text-2xl ml-2 font-semibold text-gray-300 dark:text-gray-400">
-              {props.name != undefined ? `${props.name},${props.state}` : ""}
+              {props.name != undefined ? `${name},${state}` : ""}
             </div>
 
             <div className=" text-2xl ml-2 font-semibold text-gray-300">
