@@ -44,6 +44,7 @@ function App() {
   };
 
   return (
+    <div className="" >
     <header
       className="relative flex  h-screen mb-12  scrollbar-hide">
       <div
@@ -65,6 +66,8 @@ function App() {
         </div>
       )}
     </header>
+
+    </div>
   );
 }
 
