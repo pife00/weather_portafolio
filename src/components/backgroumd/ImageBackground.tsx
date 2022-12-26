@@ -1,7 +1,7 @@
 import { WeatherMain } from "../../models/Weather";
 
 import { CSSTransition } from 'react-transition-group';
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import './my-node.css'
 
 import bg_default from "../../assets/default/default.mp4";
@@ -12,9 +12,12 @@ import clear from "../../assets/clear/clear.mp4";
 import drizzle from "../../assets/Drizzle/Drizzle.mp4";
 import thunderstorm from "../../assets/Thunderstorm/Thunderstorm.mp4";
 
+
+
 import { useState, useEffect } from "react";
 type Props = {
   weather: WeatherMain | undefined;
+  bgSource:string,
 };
 
 const duration = 3000;
@@ -32,12 +35,12 @@ const transitionStyles = {
 };
 
 
-
-
 export const ImageBackground: React.FC<Props> = (
-  { weather }: Props,
+  { weather,bgSource}: Props
 ) => {
   //const mainW = ['Thunderstorm','Drizzle','Rain','Snow','Clouds']
+
+ 
 
   const nodeRef = useRef(null);
 
@@ -49,7 +52,7 @@ export const ImageBackground: React.FC<Props> = (
 
   let show = "absolute z-10 w-auto min-w-full min-h-full max-w-none";
   useEffect(() => {
-    setTimeout(() => {
+    
       if (weather?.main != undefined) {
         if (weather.main == "Clouds") setBg(clouds);
         if (weather.main == "Snow") setBg(snow);
@@ -57,14 +60,15 @@ export const ImageBackground: React.FC<Props> = (
         if (weather.main == "Rain") setBg(rain);
         if (weather.main == "Drizzle") setBg(drizzle);
         if (weather.main == "Thunderstorm") setBg(thunderstorm);
-        console.log("Me ejecute");
+       
         setMyClass("absolute z-10 w-auto min-w-full min-h-full max-w-none");
+        
       }
-    }, 3000);
+      setInProp(!inProp)
   }, [weather]);
 
   return (
-      <CSSTransition nodeRef={nodeRef} in={inProp} timeout={2000} classNames="my-node">
+    <React.Fragment  key={weather?.main ? weather.main : "rain"} >
       <video ref={nodeRef}
         key={weather?.main ? weather.main : "rain"}
         className={myClass}
@@ -72,9 +76,9 @@ export const ImageBackground: React.FC<Props> = (
         loop
         muted
       >
-        <source src={bg} type="video/mp4" />
+        <source src={bgSource} type="video/mp4" />
       </video>
-      </CSSTransition>
+    </ React.Fragment>
       
   );
 };

@@ -1,3 +1,12 @@
+
+import * as moment from "moment";
+
+class DateClass {
+  public getDate(): moment.Moment {
+      return moment();
+  }
+}
+
 type Props = {
     temp:number,
     name:string,
@@ -5,8 +14,12 @@ type Props = {
 }
 
 export const Weather:React.FC<Props> = (props:Props) =>{
+  
+  const d = new DateClass();
+  console.log(d.getDate());
   let name = props.name != undefined ? props.name:''
   let state = props.state != undefined ? props.state:''
+  let today = new Date()
     return(
         <div className="flex">
           <h1 className="text-9xl font-semibold text-white">
@@ -22,7 +35,7 @@ export const Weather:React.FC<Props> = (props:Props) =>{
             </div>
 
             <div className=" text-2xl ml-2 font-semibold text-gray-300">
-              Martes 31 de Diciembre
+              {}
             </div>
           </div>
         </div>
