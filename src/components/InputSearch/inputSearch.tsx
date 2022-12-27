@@ -41,7 +41,7 @@ export const InputSearch:React.FC<Props> = (props:Props) => {
     <div>
       <div className="flex outline-0 rounded-lg">
         <input
-          placeholder="Quibdo,CO"
+          placeholder="Cali,CO"
           type="text"
           className="
           text-lg
