@@ -53,20 +53,15 @@ function App() {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   };
 
-  useEffect(() => {
-    // getLocation()
-    //navigator.geolocation.getCurrentPosition(successPosition,error)
-  }, []);
-
   const search = async (location: City) => {
     setState(location.state)
     await getWeather(location);
   };
 
   return (
-    <>
+    < >
       <header
-        className="relative flex  h-screen mb-12  scrollbar-hide">
+        className="relative flex  h-screen mb-12  scrollbar-hide bg-black ">
         <div
           className="relative z-30 p-5 text-2xl ml-32  text-white  rounded-xl">
           <InputSearch sendLocation={search} />

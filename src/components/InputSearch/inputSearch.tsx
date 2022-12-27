@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import City from '../../models/Cities'
 
+
 type Props = {
   sendLocation:(location:City)=>void
 }
 
 export const InputSearch:React.FC<Props> = (props:Props) => {
 
+  const API_KEY = import.meta.env.VITE_OPEN_WEATHER;
+  
   const [city, setCity] = useState("");
-  const API_KEY = "2bd2c387e35895f4fbbae66577a5a17f";
   const [cityOptions, setCityOptions] = useState<City[]>()
 
   const getLocation = async () => {
