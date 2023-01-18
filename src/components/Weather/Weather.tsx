@@ -1,6 +1,5 @@
 import { DateTime } from "luxon";
 
-
 type Props = {
   temp: number;
   name: string;

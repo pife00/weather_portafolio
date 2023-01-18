@@ -15,11 +15,12 @@ import drizzle from "./assets/Drizzle/Drizzle.mp4";
 import thunderstorm from "./assets/Thunderstorm/Thunderstorm.mp4";
 
 function App() {
-  const API_KEY = "2bd2c387e35895f4fbbae66577a5a17f";
+  
   const [weather, setWeather] = useState<Weather_City>();
   const [state, setState] = useState("");
   const [weatherMain, setWeatherMain] = useState<WeatherMain>();
   const [bg, setBg] = useState(bg_default);
+  const API_KEY = import.meta.env.VITE_OPEN_WEATHER
 
   const getWeather = async (location: City) => {
     const url_weather = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=metric&appid=${API_KEY}`;
@@ -40,15 +41,7 @@ function App() {
     if (weather.main == "Drizzle") setBg(drizzle);
     if (weather.main == "Thunderstorm") setBg(thunderstorm);
   };
-  const successPosition = (pos: any) => {
-    const cordenates = pos.coords;
-    console.log(cordenates);
-    console.log(`Latitud : ${cordenates.latitude}`);
-    console.log(`Longitud: ${cordenates.longitude}`);
-  };
-  const error = (err: any) => {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  };
+
 
   const search = async (location: City) => {
     setState(location.state);
